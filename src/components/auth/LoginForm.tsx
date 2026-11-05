@@ -11,15 +11,12 @@ import { GoogleIcon } from "@/components/layout/BrandIcons";
 import { readOAuthError } from "./oauth-error";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-/** Only allows in-app relative paths — prevents open redirects. */
 function safeRedirectPath(raw: string | null): string {
   if (raw && raw.startsWith("/") && !raw.startsWith("//")) {
     return raw;
   }
   return "/";
 }
-
 export function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -30,23 +27,18 @@ export function LoginForm() {
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const [submitting, setSubmitting] = useState(false);
   const [socialLoading, setSocialLoading] = useState(false);
-
-  // OAuth failure callback: Better Auth appends its machine-readable code
-  // after our own `error=google` sentinel, so readOAuthError un-masks the
-  // real reason (see oauth-error.ts) and shows a specific, safe message.
-  useEffect(() => {
+ useEffect(() => {
     const errorValues = searchParams.getAll("error");
     if (errorValues.length === 0) return;
 
     const info = readOAuthError(errorValues);
-    // Development log — helps debug OAuth failures without exposing anything
-    // to end users (error codes are not secrets).
+    
     if (process.env.NODE_ENV !== "production") {
       console.error("[OAuth callback failed]", { code: info.code });
     }
     toast.error(info.message);
 
-    // Strip the error params from the URL so a refresh doesn't re-toast.
+    
     router.replace(`/login?redirect=${encodeURIComponent(redirectTo)}`);
   }, [searchParams, router, redirectTo]);
 
