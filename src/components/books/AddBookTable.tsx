@@ -15,12 +15,7 @@ function formatAddedDate(value: string) {
     : date.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
 }
 
-/**
- * The "My Books" listing — every book the signed-in user added, with the
- * edit/delete actions. The backend only returns own books for `mine: true`
- * and 401s edit/delete without a JWT, so this component resolves the
- * Better Auth JWT via getBackendToken() before every protected call.
- */
+
 export function AddBookTable() {
   const [books, setBooks] = React.useState<Book[]>([]);
   const [totalCount, setTotalCount] = React.useState(0);

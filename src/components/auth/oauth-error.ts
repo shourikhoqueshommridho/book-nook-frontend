@@ -1,25 +1,5 @@
 
-/**
- * Surfaces Better Auth OAuth failure codes to the user.
- *
- * Why the raw code needs unmasking: our pages set their own
- * `errorCallbackURL` as `/login|register?error=google&redirect=…`, and Better
- * Auth *appends* its machine-readable code onto that URL without parsing the
- * existing pairs (see @better-auth/core/utils/url.appendQueryParams). The
- * result is a DUPLICATE `error` key:
- *
- *   /register?error=google&redirect=%2F&error=account_not_linked
- *
- * `searchParams.get("error")` only sees the first value ("google"), so the
- * real reason was silently discarded before this helper existed.
- */
 
-/**
- * Friendly copy for Better Auth's OAuth callback error codes
- * (node_modules/better-auth/dist/oauth2/errors.mjs → OAUTH_CALLBACK_ERROR_CODES
- * plus the state/validation codes produced by dist/api/routes/callback.mjs).
- * Values shown to users never include tokens, codes or internal details.
- */
 const OAUTH_ERROR_MESSAGES: Record<string, string> = {
   account_not_linked:
     "An account with this email already exists but isn't linked to Google yet. Sign in with your email and password instead.",
