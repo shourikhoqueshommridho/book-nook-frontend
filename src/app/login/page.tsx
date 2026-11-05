@@ -25,10 +25,7 @@ function AuthShellFallback() {
   );
 }
 
-/**
- * `useSearchParams` sits inside `<Suspense>` because with `cacheComponents`
- * the static shell is prerendered without the request's query string.
- */
+
 export default function LoginPage() {
   return (
     <main className="flex-1">
