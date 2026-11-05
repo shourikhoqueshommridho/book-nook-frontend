@@ -48,16 +48,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
-        {/* Runs the theme decision before paint to avoid a light-mode flash.
-            eslint-disable-next-line react/no-danger -- inline string is a
-            build-time constant; never takes user input. */}
-        <script
+       <script
           id="theme-init"
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: themeInitScript }}
         />
 
-        <Navbar />
+  <Navbar />
 
         <TooltipProvider>
           {children}

@@ -6,15 +6,12 @@ import { BorrowingGuide } from "@/components/home/BorrowingGuide";
 import { ReadingSpace } from "@/components/home/ReadingSpace";
 import { Skeleton } from "@/components/ui/skeleton";
 
-/** Static placeholder matching the hero height while the slider streams in. */
+
 function HeroSkeleton() {
   return <Skeleton className="h-[26rem] w-full rounded-none sm:h-[30rem] lg:h-[34rem]" />;
 }
 
-/**
- * BookNook homepage. Sections are ordered per the assignment brief.
- * New Arrivals is server-rendered from the live Express + MongoDB API.
- */
+
 export default function Home() {
   return (
     <>
