@@ -5,11 +5,7 @@ export interface BookCategoryInfo {
   description: string;
 }
 
-/**
- * The assignment's five required categories.
- * TODO(API): the category filter will later query
- * `GET /api/books?category=<name>`.
- */
+
 export const bookCategories: BookCategoryInfo[] = [
   {
     name: "Fiction",
