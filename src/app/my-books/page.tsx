@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "The books you added to the BookNook library.",
 };
 
-/** Private "My Books" page — same background and theme tokens as the Home page. */
+
 export default function MyBooksPage() {
   return (
     <main className="flex-1">
